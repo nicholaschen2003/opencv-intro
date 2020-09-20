@@ -1,3 +1,9 @@
+#Nicholas Chen
+#Python version 3.7.3
+#numpy version 1.19.1
+#argparse version 1.1
+#cv2 version 4.4.0
+
 import numpy as np
 import argparse
 import cv2
@@ -70,7 +76,6 @@ cv2.imshow("Contour", contour)
 cv2.waitKey(0)
 
 #chapter 6: masking the heart (builds on previous code)
-(x, y, w, h) = cv2.boundingRect(contours[15])
 mask = np.zeros(image.shape[:2], dtype = "uint8")
 cv2.drawContours(mask, contours[15], -1, (255, 255, 255), -1)
 cv2.fillPoly(mask, pts =[contours[15]], color=(255,255,255)) #looked this up to fill contour, setting thickness to -1 didn't work
