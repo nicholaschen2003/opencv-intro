@@ -14,4 +14,4 @@ Chapter 10: Edge detection (Canny) used to find edges in image
 
 Chapter 11: Contours building off of edge detection, isolating a single contour
 
-project.py is complete
+project.py is complete, type 'py project.py --image ericMuah.png' to run
