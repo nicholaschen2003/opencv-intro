@@ -39,3 +39,16 @@ cv2.circle(smileyFace, (center[0], center[1]), r, (255, 0, 0), 10)
 
 cv2.imshow(":)", smileyFace)
 cv2.waitKey(0)
+
+#chapter 10: edge dectection, chapter 6: converting colorspaces, chapter 8: blurring
+edges = image.copy()
+edges = cv2.cvtColor(edges, cv2.COLOR_BGR2GRAY)
+edges = cv2.GaussianBlur(edges, (9, 9), 0) #kernel size chosen to blur as much as possible without losing nose
+
+cv2.imshow("Blurred grayscale image", edges)
+cv2.waitKey(0)
+
+edges = cv2.Canny(edges, 30, 150)
+
+cv2.imshow("Edges", edges)
+cv2.waitKey(0)
