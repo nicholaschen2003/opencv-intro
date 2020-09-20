@@ -55,7 +55,7 @@ cv2.imshow("Edges", edges)
 cv2.waitKey(0)
 
 #chapter 11: contours (builds on previous code)
-(contours, _) = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+(contours, _) = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
 contour = image.copy()
 #used to display each individual contour and find heart
@@ -65,6 +65,16 @@ contour = image.copy()
 #     cv2.waitKey(0)
 
 #heart outline
-cv2.drawContours(contour, contours[15], -1, (255, 255, 0), 7)
+cv2.drawContours(contour, contours, 15, (255, 255, 0), 7)
 cv2.imshow("Contour", contour)
+cv2.waitKey(0)
+
+#chapter 6: masking the heart (builds on previous code)
+(x, y, w, h) = cv2.boundingRect(contours[15])
+mask = np.zeros(image.shape[:2], dtype = "uint8")
+cv2.drawContours(mask, contours[15], -1, (255, 255, 255), -1)
+cv2.fillPoly(mask, pts =[contours[15]], color=(255,255,255)) #looked this up to fill contour, setting thickness to -1 didn't work
+cv2.imshow("Mask", mask)
+cv2.waitKey(0)
+cv2.imshow("Masked", cv2.bitwise_and(image, image, mask = mask))
 cv2.waitKey(0)
